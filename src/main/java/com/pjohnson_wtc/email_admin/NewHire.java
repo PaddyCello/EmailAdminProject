@@ -5,7 +5,7 @@ public class NewHire {
 	private String lastName;
 	private String email;
 	private String alternateEmail;
-	private int mailboxCapacity;
+	private int mailboxCapacity = 2000000;
 	private String password;
 	
 	public NewHire(String firstName, String lastName, String email) {
@@ -39,7 +39,13 @@ public class NewHire {
 		return mailboxCapacity;
 	}
 	public void setMailboxCapacity(int mailboxCapacity) {
-		this.mailboxCapacity = mailboxCapacity;
+		
+		//Setter only updates mailboxCapacity if number is positive
+		if (mailboxCapacity > 0) {
+			this.mailboxCapacity = mailboxCapacity;
+		} else {
+			System.out.println("Mailbox capacity cannot be a negative number.");
+		}
 	}
 	
 	public void setPassword(String password) {
@@ -53,8 +59,8 @@ public class NewHire {
 	
 	//Method for displaying info
 	public String showInfo() {
-		//TODO
-		return "coming soon...";
+		
+		return "Name: " + firstName + " " + lastName + ", Email: " + email + ", Mailbox Capacity: " + mailboxCapacity + "MB";
 	}
 	
 }
