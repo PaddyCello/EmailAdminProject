@@ -8,4 +8,8 @@ public class Admin {
 		return departments;
 	}
 	
+	public String createNewHire(String firstName, String lastName, String department) {
+		return "yay";
+	}
+	
 }
