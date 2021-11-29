@@ -26,5 +26,17 @@ public class AdminTest {
 	public void testCreateNewHire_nullDepartment() {
 		assertEquals("jim.smith@company.com", admin.createNewHire("Jim", "Smith", null));
 	}
-
+	@Test
+	public void testCreateNewHire_reachesGenerateEmail() {
+		assertEquals("john.wilson@sales.company.com", admin.createNewHire("John", "Wilson", "Sales"));
+	}
+	@Test
+	public void testCreateNewHire_reachesGenerateEmail_withNullDepartment() {
+		assertEquals("fiz.buzz@company.com", admin.createNewHire("Fiz", "Buzz", null));
+	}
+	@Test
+	public void testCreateNewHire_addsToListOfHires() {
+		admin.createNewHire("John", "Wayne", null);
+		assertEquals("John", admin.getAllNewHires().get(0).getFirstName());
+	}
 }

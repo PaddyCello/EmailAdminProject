@@ -17,6 +17,7 @@ public class NewHire {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.department = department;
+		this.email = generateEmail(firstName, lastName, department);
 	}
 	
 	//Necessary getters and setters
@@ -33,8 +34,21 @@ public class NewHire {
 		return department;
 	}
 	
-	public String getEmail() { //Add private generateEmail() and call from constructor
+	public String getEmail() { 
 		return email;
+	}
+	
+	//Generate email - call from constructor
+	private String generateEmail(String firstName, String lastName, String department) {
+		
+		//Beginning of email always follows same format
+		String emailStart = firstName + "." + lastName + "@";
+		
+		//End will be different depending on whether department is supplied
+		String emailEnd = department != null ? department + ".company.com" : "company.com";
+		
+		//Email must be in lower case
+		return (emailStart + emailEnd).toLowerCase();
 	}
 
 	public String getAlternateEmail() {
