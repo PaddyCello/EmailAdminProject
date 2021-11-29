@@ -6,8 +6,10 @@ public class Main {
 		Admin admin = new Admin();
 		
 		String adamMinistrator = admin.createNewHire("Adam", "Ministrator", "Development");
+		String annGineer = admin.createNewHire("Ann", "Gineer", "Development");
 		
 		System.out.println(adamMinistrator);
+		System.out.println(annGineer);
 		
 		System.out.println(admin.getAllNewHires());
 	}
