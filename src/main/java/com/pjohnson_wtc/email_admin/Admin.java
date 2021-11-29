@@ -9,7 +9,8 @@ public class Admin {
 	}
 	
 	public String createNewHire(String firstName, String lastName, String department) {
-		return "yay";
+		NewHire newHire = new NewHire(firstName, lastName, department);
+		return newHire.getDepartment() != null ? (newHire.getFirstName() + "." + newHire.getLastName() + "@" + newHire.getDepartment() + ".company.com").toLowerCase() : (newHire.getFirstName() + "." + newHire.getLastName() + "@company.com").toLowerCase() ;
 	}
 	
 }

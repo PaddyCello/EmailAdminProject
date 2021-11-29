@@ -19,8 +19,12 @@ public class AdminTest {
 	Admin admin;
 
 	@Test
-	public void testCreateNewHire() {
-		assertEquals("yay", admin.createNewHire("Bob", "Jones", "Accounting"));
+	public void testCreateNewHire_emailFormat() {
+		assertEquals("bob.jones@accounting.company.com", admin.createNewHire("Bob", "Jones", "Accounting"));
+	}
+	@Test
+	public void testCreateNewHire_nullDepartment() {
+		assertEquals("jim.smith@company.com", admin.createNewHire("Jim", "Smith", null));
 	}
 
 }
