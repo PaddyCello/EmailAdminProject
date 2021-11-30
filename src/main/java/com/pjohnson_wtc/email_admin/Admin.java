@@ -18,6 +18,11 @@ public class Admin {
 		return allNewHires;
 	}
 	
+	public NewHire findNewHireById(String email) {
+		//TODO
+		return null;
+	}
+	
 	//Method for creating new NewHire objects from Admin
 	public String createNewHire(String firstName, String lastName, String department) {
 		
