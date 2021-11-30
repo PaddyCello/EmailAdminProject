@@ -2,6 +2,7 @@ package com.pjohnson_wtc.email_admin;
 
 import java.io.IOException;
 import java.util.logging.*;
+import java.util.stream.Collectors;
 
 public class Main {
 	
@@ -38,7 +39,15 @@ public class Main {
 		
 			System.out.println(adamMinistrator);
 			System.out.println(annGineer);
-		
+			
+			//Will build this into an Admin method in future
+			NewHire trialNewHire = admin.getAllNewHires().stream().filter(x -> x.getEmail().equals(adamMinistrator)).collect(Collectors.toList()).get(0);
+			
+			//Test out getters for NewHire
+			System.out.println(trialNewHire.getFirstName());
+			System.out.println(trialNewHire.getLastName());
+			System.out.println(trialNewHire.getDepartment());
+			System.out.println(trialNewHire.getMailboxCapacity());
 		
 			System.out.println(admin.getAllNewHires());
 			
