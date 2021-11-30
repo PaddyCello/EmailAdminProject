@@ -7,9 +7,11 @@ public class Main {
 		
 		String adamMinistrator = admin.createNewHire("Adam", "Ministrator", "Development");
 		String annGineer = admin.createNewHire("Ann", "Gineer", "Development");
+		String mikeRosoft = admin.createNewHire("Mike", "Rosoft", "Office");
 		
 		System.out.println(adamMinistrator);
 		System.out.println(annGineer);
+		
 		
 		System.out.println(admin.getAllNewHires());
 	}

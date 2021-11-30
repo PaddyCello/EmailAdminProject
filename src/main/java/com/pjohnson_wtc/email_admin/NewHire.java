@@ -6,7 +6,7 @@ public class NewHire {
 	//Instance variables - mailboxCapacity is initially given a default value
 	private String firstName;
 	private String lastName;
-	private String department; //Will need G's and S's
+	private String department;
 	private String email;
 	private String alternateEmail;
 	private int mailboxCapacity = 2000000;
@@ -14,6 +14,7 @@ public class NewHire {
 	
 	//Constructor - will be called from within Admin.createNewHire()
 	public NewHire(String firstName, String lastName, String department) {
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.department = department;
