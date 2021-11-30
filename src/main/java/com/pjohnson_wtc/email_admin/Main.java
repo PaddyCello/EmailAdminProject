@@ -1,20 +1,34 @@
 package com.pjohnson_wtc.email_admin;
 
+import java.io.IOException;
 import java.util.logging.*;
 
 public class Main {
 	
+	//Create new Logger and ConsoleHandler
 	private static Logger logger = Logger.getAnonymousLogger();
 	private static Handler consoleHandler = new ConsoleHandler();
-
-	public static void main(String[] args) {
+	
+	public static void main(String[] args) throws IOException {
 		
+		//Create new FileHandler - had to do in main() so an IOException is throwable
+		FileHandler fileHandler = new FileHandler("logfile.txt");
+		
+		//Set logging levels for Logger, ConsoleHandler and FileHandler
 		logger.setLevel(Level.ALL);
 		consoleHandler.setLevel(Level.ALL);
+		fileHandler.setLevel(Level.ALL);
+		
+		//Set formatter for FileHandler so output is text and not XML
+		fileHandler.setFormatter(new SimpleFormatter());
+
+		//Add handlers to Logger
 		logger.addHandler(consoleHandler);
+		logger.addHandler(fileHandler);
 		
 		logger.info("Starting log");
 		
+		//Create Admin and test objects - have these all in the same try block for scope reasons
 		try {
 			Admin admin = new Admin();
 			

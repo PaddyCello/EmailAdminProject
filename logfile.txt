@@ -1,0 +1,4 @@
+Nov 30, 2021 11:05:24 AM com.pjohnson_wtc.email_admin.Main main
+INFO: Starting log
+Nov 30, 2021 11:05:24 AM com.pjohnson_wtc.email_admin.Main main
+FINE: Done
