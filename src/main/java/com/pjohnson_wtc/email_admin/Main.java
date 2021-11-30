@@ -1,6 +1,7 @@
 package com.pjohnson_wtc.email_admin;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.*;
 import java.util.stream.Collectors;
 
@@ -49,7 +50,15 @@ public class Main {
 			System.out.println(trialNewHire.getDepartment());
 			System.out.println(trialNewHire.getMailboxCapacity());
 		
-			System.out.println(admin.getAllNewHires());
+			//Test out getters for Admin
+			String[] adminDepts = admin.getDepartments();
+			for (String dept : adminDepts) {
+				System.out.println(dept);
+			}
+			List<NewHire> trialHires = admin.getAllNewHires();
+			for (NewHire hire : trialHires) {
+				System.out.println(hire);
+			}
 			
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Could not create object from constructor", e);

@@ -96,4 +96,7 @@ public class NewHire {
 //		return "Name: " + firstName + " " + lastName + ", Email: " + email + ", Mailbox Capacity: " + mailboxCapacity + "MB";
 //	}
 	
+	public String toString() {
+		return firstName + " " + lastName + ", " + department + ": " + email;
+	}
 }
