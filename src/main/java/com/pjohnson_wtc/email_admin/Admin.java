@@ -17,9 +17,14 @@ public class Admin {
 	}
 	
 	public String createNewHire(String firstName, String lastName, String department) {
-		NewHire newHire = new NewHire(firstName, lastName, department);
-		allNewHires.add(newHire);
-		return newHire.getEmail();
+		if (firstName == null || lastName == null) {
+			System.out.println("Invalid format: missing fields");
+			return "Invalid format";
+		} else {
+			NewHire newHire = new NewHire(firstName, lastName, department);
+			allNewHires.add(newHire);
+			return newHire.getEmail();
+		}
 	}
 	
 }

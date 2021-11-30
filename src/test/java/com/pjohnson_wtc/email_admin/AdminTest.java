@@ -39,4 +39,12 @@ public class AdminTest {
 		admin.createNewHire("John", "Wayne", null);
 		assertEquals("John", admin.getAllNewHires().get(0).getFirstName());
 	}
+	@Test
+	public void testCreateNewHire_noNullNames() {
+		assertEquals("Invalid format", admin.createNewHire(null, "Johnson", "Sales"));
+	}
+	@Test
+	public void testCreateNewHire_onlyValidDepartments() {
+		assertEquals("Department not listed", admin.createNewHire("Mike", "Rosoft", "Office"));
+	}
 }
