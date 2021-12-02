@@ -1,28 +1,25 @@
 package com.pjohnson_wtc.email_admin;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.*;
 
 public class Admin {
 	
+	//Create logger
+	private static Logger logger = Logger.getLogger("com.pjohnson_wtc.email_admin.admin");
+	
+	//Instance variables for Admin
 	private static String[] departments = {"sales", "development", "accounting"};
 	private static List<NewHire> allNewHires = new ArrayList<NewHire>();
 	
-	public String[] getDepartments() {
-		return departments;
-	}
-	
-	public List<NewHire> getAllNewHires() {
-		return allNewHires;
-	}
-	//TODO
-	public NewHire findNewHireById(String email) {
-		return null;
-	}
-	
 	//Validation check - no missing name
 	private boolean checkValidName(String firstName, String lastName) {
-		return (firstName == null || lastName == null) ? false : true;
+		boolean nameValid = (firstName == null || lastName == null) ? false : true;
+		
+		if (!nameValid) logger.setLevel(Level.WARNING);
+		return nameValid;
 	}
 	
 	//Validation check - department passed as argument is valid
@@ -35,6 +32,9 @@ public class Admin {
 				break;
 			}
 		}
+		
+		if (!departmentExists) logger.setLevel(Level.WARNING);
+		
 		return departmentExists;
 	}
 	
@@ -54,4 +54,30 @@ public class Admin {
 			return newHire.getEmail();
 	}
 	
+	//Getters
+	public String[] getDepartments() {
+		return departments;
+	}
+	
+	public List<NewHire> getAllNewHires() {
+		return allNewHires;
+	}
+	
+	
+	//TODO
+	public NewHire findNewHireById(String email) {
+		return null;
+	}
+		
+	public static void main(String[] args) throws IOException {
+		
+		//Setup for logger and file handler
+		FileHandler fileHandler = new FileHandler("logfile.txt");
+		fileHandler.setFormatter(new SimpleFormatter());
+		logger.setLevel(Level.ALL);
+		fileHandler.setLevel(Level.ALL);
+		logger.addHandler(fileHandler);
+		
+		logger.fine("All fine");
+	}
 }
