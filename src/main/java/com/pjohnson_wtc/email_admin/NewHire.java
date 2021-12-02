@@ -55,28 +55,32 @@ public class NewHire {
 	public String getAlternateEmail() {
 		return alternateEmail;
 	}
+	//TODO
 	public void setAlternateEmail(String alternateEmail) {
-		//TODO
+
 	}
 	
 	public int getMailboxCapacity() {
 		return mailboxCapacity;
 	}
+	//TODO
 	public void setMailboxCapacity(int mailboxCapacity) {
-		//TODO
+
 	}
 	
-	//Need getter for testing purposes, can remove after
+	//Will need getter for testing purposes, can remove after
 	public String getPassword() {
 		return password;
 	}
+	//TODO
 	public void setPassword(String password) {
-		//TODO
+
 	}
 	
 	//Will be called from the constructor
+	//TODO
 	private String generatePassword() {
-		//TODO
+
 		return null;
 	}
 	

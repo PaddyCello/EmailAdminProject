@@ -1,9 +1,7 @@
 package com.pjohnson_wtc.email_admin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Admin {
 	
