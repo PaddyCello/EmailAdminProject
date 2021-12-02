@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 public class Admin {
 	
-	private String[] departments = {"sales", "development", "accounting"};
-	private List<NewHire> allNewHires = new ArrayList<NewHire>();
+	private static String[] departments = {"sales", "development", "accounting"};
+	private static List<NewHire> allNewHires = new ArrayList<NewHire>();
 	
 	public String[] getDepartments() {
 		return departments;
@@ -17,30 +17,34 @@ public class Admin {
 	public List<NewHire> getAllNewHires() {
 		return allNewHires;
 	}
-	
+	//TODO
 	public NewHire findNewHireById(String email) {
-		//TODO
 		return null;
+	}
+	
+	//Validation check - no missing name
+	private boolean checkValidName(String firstName, String lastName) {
+		return (firstName == null || lastName == null) ? false : true;
+	}
+	
+	//Validation check - department passed as argument is valid
+	private boolean checkValidDepartment(String department) {
+		boolean departmentExists = (department == null) ? true : false;
+		
+		for (String dept : departments) {
+			if (dept.equalsIgnoreCase(department)) {
+				departmentExists = true;
+				break;
+			}
+		}
+		return departmentExists;
 	}
 	
 	//Method for creating new NewHire objects from Admin
 	public String createNewHire(String firstName, String lastName, String department) {
 		
-		//Validation check - no missing name
-		if (firstName == null || lastName == null) {
-			System.out.println("Invalid format: missing fields");
-			return "Invalid format";
-			
-		//Validation check - department given as argument exists
-		} else if (department != null && 
-				Arrays.asList(departments).stream()
-				.filter(x -> x.equals(department.toLowerCase()))
-				.collect(Collectors.toList()).size() == 0) {
-			System.out.println("Invalid format: department not listed");
-			return "Department not listed";
-		
-		//If checks are successful:
-		} else {
+		if (!checkValidName(firstName, lastName)) return "Invalid format";
+		if (!checkValidDepartment(department)) return "Department not listed";
 			
 			//Create NewHire object
 			NewHire newHire = new NewHire(firstName, lastName, department);
@@ -50,7 +54,6 @@ public class Admin {
 			
 			//Return email address - could also use for search purposes
 			return newHire.getEmail();
-		}
 	}
 	
 }
