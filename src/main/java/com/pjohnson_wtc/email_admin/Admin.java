@@ -18,7 +18,7 @@ public class Admin {
 	private boolean checkValidName(String firstName, String lastName) {
 		boolean nameValid = (firstName == null || lastName == null) ? false : true;
 		
-		if (!nameValid) logger.setLevel(Level.WARNING);
+		if (!nameValid) logger.log(Level.WARNING, "Incomplete name supplied");
 		return nameValid;
 	}
 	
@@ -33,7 +33,7 @@ public class Admin {
 			}
 		}
 		
-		if (!departmentExists) logger.setLevel(Level.WARNING);
+		if (!departmentExists) logger.log(Level.WARNING, "Invalid department");
 		
 		return departmentExists;
 	}
