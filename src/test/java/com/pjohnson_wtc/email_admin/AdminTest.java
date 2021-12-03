@@ -1,14 +1,19 @@
 package com.pjohnson_wtc.email_admin;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AdminTest {
+	
+	@Mock
+	NewHire newHire;
 	
 	@InjectMocks
 	Admin admin;
@@ -33,5 +38,17 @@ public class AdminTest {
 	@Test
 	public void testCreateNewHire_invalidDepartment() {
 		assertEquals("Department not listed", admin.createNewHire("Mike", "Rosoft", "Office"));
+	}
+	
+	//Tests for WTCET-16 - generate password
+	//At the moment, can only test this method with failing tests, purely so I can compare outputs manually
+	@Test
+	public void testGeneratePassword_returnsValue() {
+		admin.createNewHire("John", "Wayne", null);
+		assertEquals("password", admin.getAllNewHires().get(0).getPassword());
+	}
+	@Test
+	public void testGeneratePassword_checkLengthGenerated() {
+		assertEquals(10, admin.getAllNewHires().get(0).getPassword().length());
 	}
 }
