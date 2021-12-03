@@ -1,7 +1,5 @@
 package com.pjohnson_wtc.email_admin;
 
-import java.util.Random;
-
 //Class for new hires
 public class NewHire {
 	
@@ -89,16 +87,25 @@ public class NewHire {
 
 	}
 	
-	//Will be called from the constructor
-	//TODO
+	//Generate random password
 	private String generatePassword() {
-		int passwordLength = (int)Math.floor(Math.random() * 10) + 10;
-		char[] passwordLetters = new char[passwordLength];
+		
+		//Set random length between 10 and 20 characters
+		int passwordLength = (int)((Math.random() * 10) + 10);
+		
+		//Initialize empty string
 		String testPassword = "";
-		for (char letter : passwordLetters) {
-			letter = (char)((int)(Math.random() * 93) + 33);
+		
+		//Loop across range from zero to password length, generating random ASCII characters
+		for (int i = 0; i < passwordLength; i++) {
+			
+			char letter = (char)((int)(Math.random() * 93) + 33);
+			
+			//Concatenate each character to password string
 			testPassword = testPassword + letter;
 		}
+		
+		//Return password
 		return testPassword;
 	}
 }
