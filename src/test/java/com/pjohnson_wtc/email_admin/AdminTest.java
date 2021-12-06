@@ -44,4 +44,28 @@ public class AdminTest {
 		admin.createNewHire("John", "Wayne", null);
 		assertNotNull(admin.getAllNewHires().get(1).getPassword());
 	}
+	@Test
+	public void testSetAlternateEmail_correctEmailFormat() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(0).setAlternateEmail("dummy@dummy.com");
+		assertEquals("dummy@dummy.com", admin.getAllNewHires().get(0).getAlternateEmail());
+	}
+	@Test
+	public void testSetAlternateEmail_incorrectFormat() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(1).setAlternateEmail("dummy");
+		assertNull(admin.getAllNewHires().get(1).getAlternateEmail());
+	}
+	@Test
+	public void testSetMailboxCapacity_positiveNumber() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(0).setMailboxCapacity(10);
+		assertEquals(10, admin.getAllNewHires().get(0).getMailboxCapacity());
+	}
+	@Test
+	public void testSetMailboxCapacity_numberZeroOrLess() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(1).setMailboxCapacity(-10);
+		assertEquals(2000000, admin.getAllNewHires().get(1).getMailboxCapacity());
+	}
 }

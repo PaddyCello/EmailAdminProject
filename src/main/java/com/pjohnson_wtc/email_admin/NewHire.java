@@ -96,12 +96,16 @@ public class NewHire {
 	
 	//TODO
 	public void setAlternateEmail(String alternateEmail) {
-
+		if (alternateEmail.contains("@") && alternateEmail.contains(".")) {
+			this.alternateEmail = alternateEmail;
+		}
 	}
 	
 	//TODO
 	public void setMailboxCapacity(int mailboxCapacity) {
-
+		if (mailboxCapacity > 0) {
+			this.mailboxCapacity = mailboxCapacity;
+		}
 	}
 	
 	//TODO
