@@ -57,6 +57,12 @@ public class AdminTest {
 		assertNull(admin.getAllNewHires().get(1).getAlternateEmail());
 	}
 	@Test
+	public void testSetAlternateEmail_incorrectFormat_tooShort() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(2).setAlternateEmail("@.");
+		assertNull(admin.getAllNewHires().get(2).getAlternateEmail());
+	}
+	@Test
 	public void testSetMailboxCapacity_positiveNumber() {
 		admin.createNewHire("John", "Wayne", null);
 		admin.getAllNewHires().get(0).setMailboxCapacity(10);
@@ -67,5 +73,18 @@ public class AdminTest {
 		admin.createNewHire("John", "Wayne", null);
 		admin.getAllNewHires().get(1).setMailboxCapacity(-10);
 		assertEquals(2000000, admin.getAllNewHires().get(1).getMailboxCapacity());
+	}
+	@Test
+	public void testSetNewPassword_correctFormat() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(0).setPassword("1sD4gh!#");
+		assertEquals("1sD4gh!#", admin.getAllNewHires().get(0).getPassword());
+	}
+	@Test
+	public void testSetNewPassword_tooShort() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(0).setPassword("1sD4gh!#");
+		admin.getAllNewHires().get(0).setPassword("1sD4gh!");
+		assertEquals("1sD4gh!#", admin.getAllNewHires().get(0).getPassword());
 	}
 }

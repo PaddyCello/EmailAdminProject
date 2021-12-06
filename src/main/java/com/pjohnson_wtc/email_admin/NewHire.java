@@ -96,7 +96,12 @@ public class NewHire {
 	
 	//TODO
 	public void setAlternateEmail(String alternateEmail) {
-		if (alternateEmail.contains("@") && alternateEmail.contains(".")) {
+		
+		//Format validation
+		if (alternateEmail.contains("@") && 
+				alternateEmail.contains(".") && 
+				alternateEmail.length() > 5) {
+			
 			this.alternateEmail = alternateEmail;
 		}
 	}
@@ -110,7 +115,9 @@ public class NewHire {
 	
 	//TODO
 	public void setPassword(String password) {
-
+		if (password.length() > 7) {
+			this.password = password;
+		}
 	}
 	
 }
