@@ -39,16 +39,4 @@ public class AdminTest {
 	public void testCreateNewHire_invalidDepartment() {
 		assertEquals("Department not listed", admin.createNewHire("Mike", "Rosoft", "Office"));
 	}
-	
-	//Tests for WTCET-16 - generate password
-	//At the moment, can only test this method with failing tests, purely so I can compare outputs manually
-	@Test
-	public void testGeneratePassword_returnsValue() {
-		admin.createNewHire("John", "Wayne", null);
-		assertEquals("password", admin.getAllNewHires().get(0).getPassword());
-	}
-	@Test
-	public void testGeneratePassword_checkLengthGenerated() {
-		assertEquals(10, admin.getAllNewHires().get(0).getPassword().length());
-	}
 }
