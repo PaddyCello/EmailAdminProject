@@ -19,6 +19,7 @@ public class NewHire {
 		this.lastName = lastName;
 		this.department = department;
 		this.email = generateEmail(firstName, lastName, department);
+		this.password = generatePassword();
 	}
 	
 	//Generate email - call from constructor
@@ -32,6 +33,28 @@ public class NewHire {
 			
 		//Email must be in lower case
 		return (emailStart + emailEnd).toLowerCase();
+	}
+	
+	//NEW: Generate random password
+	private String generatePassword() {
+			
+		//Set random length between 10 and 20 characters
+		int passwordLength = (int)((Math.random() * 10) + 10);
+			
+		//Initialize empty string
+		String temporaryPassword = "";
+			
+		//Loop across range from zero to password length, generating random ASCII characters
+		for (int i = 0; i < passwordLength; i++) {
+				
+			char letter = (char)((int)(Math.random() * 93) + 33);
+				
+			//Concatenate each character to password string
+			temporaryPassword = temporaryPassword + letter;
+		}
+			
+		//Return password
+		return temporaryPassword;
 	}
 
 	//Necessary getters and setters
@@ -86,10 +109,4 @@ public class NewHire {
 
 	}
 	
-	//Will be called from the constructor
-	//TODO
-	private String generatePassword() {
-
-		return null;
-	}
 }
