@@ -41,6 +41,8 @@ public class Admin {
 	//Method for creating new NewHire objects from Admin
 	public String createNewHire(String firstName, String lastName, String department) {
 		
+		logger.info("Creating new NewHire object");
+		
 		if (!checkValidName(firstName, lastName)) return "Invalid format";
 		if (!checkValidDepartment(department)) return "Department not listed";
 			
@@ -49,6 +51,8 @@ public class Admin {
 			
 			//Add NewHire to Admin.allNewHires
 			allNewHires.add(newHire);
+			
+			logger.info("NewHire created, with firstName, lastName, department, email and password initialized.");
 			
 			//Return email address - could also use for search purposes
 			return newHire.getEmail();

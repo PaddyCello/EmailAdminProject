@@ -35,7 +35,7 @@ public class NewHire {
 		return (emailStart + emailEnd).toLowerCase();
 	}
 	
-	//NEW: Generate random password
+	//Generate random password
 	private String generatePassword() {
 			
 		//Set random length between 10 and 20 characters
