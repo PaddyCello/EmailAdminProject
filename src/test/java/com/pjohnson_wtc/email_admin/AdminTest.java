@@ -87,4 +87,25 @@ public class AdminTest {
 		admin.getAllNewHires().get(0).setPassword("1sD4gh!");
 		assertEquals("1sD4gh!#", admin.getAllNewHires().get(0).getPassword());
 	}
+	@Test
+	public void testSetNewPassword_noUpperCase() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(0).setPassword("1sD4gh!#");
+		admin.getAllNewHires().get(0).setPassword("1sd4gh!#");
+		assertEquals("1sD4gh!#", admin.getAllNewHires().get(0).getPassword());
+	}
+	@Test
+	public void testSetNewPassword_noLowerCase() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(0).setPassword("1sD4gh!#");
+		admin.getAllNewHires().get(0).setPassword("1SD4GH!#");
+		assertEquals("1sD4gh!#", admin.getAllNewHires().get(0).getPassword());
+	}
+	@Test
+	public void testSetNewPassword_noNumber() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(0).setPassword("1sD4gh!#");
+		admin.getAllNewHires().get(0).setPassword("isD4gh!#");
+		assertEquals("1sD4gh!#", admin.getAllNewHires().get(0).getPassword());
+	}
 }

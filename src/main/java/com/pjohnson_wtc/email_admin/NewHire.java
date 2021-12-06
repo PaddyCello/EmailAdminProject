@@ -1,5 +1,8 @@
 package com.pjohnson_wtc.email_admin;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //Class for new hires
 public class NewHire {
 	
@@ -98,6 +101,7 @@ public class NewHire {
 	public void setAlternateEmail(String alternateEmail) {
 		
 		//Format validation
+		//In terms of minimum length, @ + . + top level domain = at least 4, plus at least one character each for username and domain
 		if (alternateEmail.contains("@") && 
 				alternateEmail.contains(".") && 
 				alternateEmail.length() > 5) {
@@ -114,9 +118,28 @@ public class NewHire {
 	}
 	
 	//TODO
+	private String checkUpperCase(String password) {
+		char[] passwordLetters = password.toCharArray();
+		boolean upperCase = false;
+		boolean lowerCase = false;
+		
+		for (Character letter : passwordLetters) {
+			if (Character.isUpperCase(letter)) {
+				upperCase = true;
+			}
+			if (Character.isLowerCase(letter)) {
+				lowerCase = true;
+			}
+		}
+		
+		return (upperCase && lowerCase) ? password : this.password;
+	}
+	
 	public void setPassword(String password) {
+		String newPassword = checkUpperCase(password);
+		
 		if (password.length() > 7) {
-			this.password = password;
+			this.password = newPassword;
 		}
 	}
 	
