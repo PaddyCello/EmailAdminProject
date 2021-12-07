@@ -118,25 +118,35 @@ public class NewHire {
 	}
 	
 	//TODO
-	private String checkUpperCase(String password) {
+	private String validatePasswordFormat(String password) {
 		char[] passwordLetters = password.toCharArray();
 		boolean upperCase = false;
 		boolean lowerCase = false;
+		boolean hasNumber = false;
+		boolean hasSpecialChar = false;
 		
-		for (Character letter : passwordLetters) {
+		for (char letter : passwordLetters) {
 			if (Character.isUpperCase(letter)) {
 				upperCase = true;
 			}
 			if (Character.isLowerCase(letter)) {
 				lowerCase = true;
 			}
+			if (Character.isDigit(letter)) {
+				hasNumber = true;
+			}
+			if ((letter > 32 && letter < 48) ||
+					(letter > 57 && letter < 65) ||
+					(letter > 90 && letter < 97) ||
+					(letter > 122 && letter < 127)) {
+				hasSpecialChar = true;
+			}
 		}
-		
-		return (upperCase && lowerCase) ? password : this.password;
+		return (upperCase && lowerCase && hasNumber && hasSpecialChar) ? password : this.password;
 	}
 	
 	public void setPassword(String password) {
-		String newPassword = checkUpperCase(password);
+		String newPassword = validatePasswordFormat(password);
 		
 		if (password.length() > 7) {
 			this.password = newPassword;

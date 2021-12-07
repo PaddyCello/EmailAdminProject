@@ -105,7 +105,14 @@ public class AdminTest {
 	public void testSetNewPassword_noNumber() {
 		admin.createNewHire("John", "Wayne", null);
 		admin.getAllNewHires().get(0).setPassword("1sD4gh!#");
-		admin.getAllNewHires().get(0).setPassword("isD4gh!#");
+		admin.getAllNewHires().get(0).setPassword("isDgdh!#");
+		assertEquals("1sD4gh!#", admin.getAllNewHires().get(0).getPassword());
+	}
+	@Test
+	public void testSetNewPassword_noSpecialChar() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.getAllNewHires().get(0).setPassword("1sD4gh!#");
+		admin.getAllNewHires().get(0).setPassword("1sD4gh1h");
 		assertEquals("1sD4gh!#", admin.getAllNewHires().get(0).getPassword());
 	}
 }
