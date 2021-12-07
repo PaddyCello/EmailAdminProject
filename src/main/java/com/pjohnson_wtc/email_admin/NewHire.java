@@ -1,8 +1,5 @@
 package com.pjohnson_wtc.email_admin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 //Class for new hires
 public class NewHire {
 	
@@ -97,40 +94,52 @@ public class NewHire {
 	
 	//-----TODOS-----
 	
-	//TODO
+	//Setter for alternate email
 	public void setAlternateEmail(String alternateEmail) {
-		
+
 		//Format validation
 		//In terms of minimum length, @ + . + top level domain = at least 4, plus at least one character each for username and domain
-		if (alternateEmail.contains("@") && 
-				alternateEmail.contains(".") && 
-				alternateEmail.length() > 5) {
+		if (alternateEmail.contains("@") &&
+			alternateEmail.contains(".") &&
+			(alternateEmail.length() > 5) &&
+			!(alternateEmail.substring(alternateEmail.length() -2).contains("@")) &&
+			!(alternateEmail.substring(alternateEmail.length() -2).contains(".")) &&
+			(alternateEmail.charAt(0) != '@') &&
+			(alternateEmail.charAt(0) != '.')) {
 			
 			this.alternateEmail = alternateEmail;
+
 		}
 	}
 	
-	//TODO
+	//Setter for new mailbox capacity
 	public void setMailboxCapacity(int mailboxCapacity) {
+		
+		//New capacity must be a positive number
 		if (mailboxCapacity > 0) {
 			this.mailboxCapacity = mailboxCapacity;
 		}
 	}
 	
-	//TODO
+	//Validate password format
 	private String validatePasswordFormat(String password) {
+		
+		//Split password into charArray
 		char[] passwordLetters = password.toCharArray();
-		boolean upperCase = false;
-		boolean lowerCase = false;
+
+		//Initialize booleans as false for validation criteria
+		boolean hasUpperCase = false;
+		boolean hasLowerCase = false;
 		boolean hasNumber = false;
 		boolean hasSpecialChar = false;
 		
+		//Loop through char array, evaluating each character and updating validation booleans as appropriate
 		for (char letter : passwordLetters) {
 			if (Character.isUpperCase(letter)) {
-				upperCase = true;
+				hasUpperCase = true;
 			}
 			if (Character.isLowerCase(letter)) {
-				lowerCase = true;
+				hasLowerCase = true;
 			}
 			if (Character.isDigit(letter)) {
 				hasNumber = true;
@@ -140,14 +149,20 @@ public class NewHire {
 					(letter > 90 && letter < 97) ||
 					(letter > 122 && letter < 127)) {
 				hasSpecialChar = true;
-			}
+			}	
 		}
-		return (upperCase && lowerCase && hasNumber && hasSpecialChar) ? password : this.password;
+		
+		//If all four conditions are met, we are allowed to proceed with the new password
+		return (hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar) ? password : this.password;
 	}
 	
+	//Setter for new password
 	public void setPassword(String password) {
+		
+		//Check that new password has all of the required character types
 		String newPassword = validatePasswordFormat(password);
 		
+		//Check that password is at least eight characters long
 		if (password.length() > 7) {
 			this.password = newPassword;
 		}
