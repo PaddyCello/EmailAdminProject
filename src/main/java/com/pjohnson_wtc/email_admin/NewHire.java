@@ -92,13 +92,10 @@ public class NewHire {
 		return firstName + " " + lastName + ", " + department + ": " + email;
 	}
 	
-	//-----TODOS-----
-	
-	//Setter for alternate email
-	public void setAlternateEmail(String alternateEmail) {
-
-		//Format validation
-		//In terms of minimum length, @ + . + top level domain = at least 4, plus at least one character each for username and domain
+	//Validation for alternate email format
+	private String validateAlternateEmail(String alternateEmail) {
+		
+		//Minimum length: @ + . + top level domain => 4, plus >= one character each for username and domain
 		if (alternateEmail.contains("@") &&
 			alternateEmail.contains(".") &&
 			(alternateEmail.length() > 5) &&
@@ -107,9 +104,17 @@ public class NewHire {
 			(alternateEmail.charAt(0) != '@') &&
 			(alternateEmail.charAt(0) != '.')) {
 			
-			this.alternateEmail = alternateEmail;
-
+			//If all checks pass, return email that has been passed as argument
+			return alternateEmail;
 		}
+		//Otherwise, return alternateEmail from object
+		return this.alternateEmail;
+	}
+	
+	//Setter for alternate email - set to output of validateAlternateEmail
+	public void setAlternateEmail(String alternateEmail) {
+
+		this.alternateEmail = validateAlternateEmail(alternateEmail);
 	}
 	
 	//Setter for new mailbox capacity
