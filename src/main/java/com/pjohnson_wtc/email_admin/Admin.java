@@ -38,7 +38,6 @@ public class Admin {
 		return departmentExists;
 	}
 	
-	//NEW - until 110
 	//Validation check - preventing duplicate entries in allNewHires
 	private boolean checkUnique(String firstName, String lastName, String department) {
 		
