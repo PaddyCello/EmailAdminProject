@@ -58,6 +58,21 @@ public class NewHire {
 		//Return password
 		return temporaryPassword;
 	}
+	//NEW until 75 - overrides for equals and hashCode
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NewHire newHire = (NewHire) o;
+        return Objects.equals(firstName, newHire.firstName) &&
+                Objects.equals(lastName, newHire.lastName) &&
+                Objects.equals(email, newHire.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email);
+    }
 
 	//Necessary getters and setters
 	
@@ -110,18 +125,5 @@ public class NewHire {
 	public void setPassword(String password) {
 
 	}
-	 @Override
-     public boolean equals(Object o) {
-         if (this == o) return true;
-         if (o == null || getClass() != o.getClass()) return false;
-         NewHire newHire = (NewHire) o;
-         return Objects.equals(firstName, newHire.firstName) &&
-                 Objects.equals(lastName, newHire.lastName) &&
-                 Objects.equals(email, newHire.email);
-     }
-
-     @Override
-     public int hashCode() {
-         return Objects.hash(firstName, lastName, email);
-     }
+	 
 }
