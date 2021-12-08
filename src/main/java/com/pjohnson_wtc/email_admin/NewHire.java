@@ -62,7 +62,6 @@ public class NewHire {
 		return temporaryPassword;
 	}
   
-	//NEW until 75 - overrides for equals and hashCode
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,7 +77,6 @@ public class NewHire {
         return Objects.hash(firstName, lastName, email);
     }
 	
-	//NEW until 157
 	//Validation for alternate email format
 	private String validateAlternateEmail(String alternateEmail) {
 			
@@ -174,7 +172,6 @@ public class NewHire {
 	}
 
 	//Necessary getters
-	
 	public String getFirstName() {
 		return firstName;
 	}
