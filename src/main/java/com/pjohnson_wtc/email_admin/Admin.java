@@ -37,19 +37,32 @@ public class Admin {
 		
 		return departmentExists;
 	}
-	//Method for preventing duplicates
+	
+	//NEW - until 110
+	//Validation check - preventing duplicate entries in allNewHires
 	private boolean checkUnique(String firstName, String lastName, String department) {
+		
+		//Initialize result to true
 		boolean isUnique = true;
+		
+		//Loop through allNewHires, checking for equality between arguments given and corresponding fields
 		if (allNewHires.size() > 0) {
+			
 			for (NewHire hire : allNewHires) {
+				
 				if (hire.getFirstName() == firstName &&
 					hire.getLastName() == lastName &&
 					hire.getDepartment() == department) {
+					
+					//If all three match, set isUnique to false and break the loop
 					isUnique = false;
 					break;
 				}
 			}
 		}
+		
+		//Log warning if duplicate found and return result
+		if (!isUnique) logger.log(Level.WARNING, "Email address already exists for this person.");
 		return isUnique;
 	}
 	
@@ -70,30 +83,41 @@ public class Admin {
 			return newHire.getEmail();
 	}
 	
+	//Method for finding new hire by email address
+	public NewHire findNewHireById(String email) {
+		
+		//Default result to null
+		NewHire foundHire = null;
+		
+		//Loop through allNewHires, checking equality between email argument and emails for entries
+		if (allNewHires.size() > 0) {
+			for (NewHire hire : allNewHires) {
+			
+				if (hire.getEmail().equals(email)) {
+				
+					//If a match is found, assign the entry to foundHire and break the loop
+					foundHire = hire;
+					break;
+				}
+			}
+		}
+		
+		//Log a warning if no result is returned
+		if (foundHire == null) logger.log(Level.WARNING, "Email not found.");
+		
+		//Return result
+		return foundHire;
+	}
+	
 	//Getters
 	public String[] getDepartments() {
 		return departments;
 	}
-	
+		
 	public List<NewHire> getAllNewHires() {
 		return allNewHires;
 	}
-	
-	
-	//TODO
-	public NewHire findNewHireById(String email) {
-		NewHire foundHire = null;
-		for (NewHire hire : allNewHires) {
-			if (hire.getEmail().equals(email)) {
-				foundHire = hire;
-				break;
-			}
-		}
-		if (foundHire == null) {
-			logger.log(Level.WARNING, "Email not found.");
-		}
-		return foundHire;
-	}
+		
 		
 	public static void main(String[] args) throws IOException {
 		
