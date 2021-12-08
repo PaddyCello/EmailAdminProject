@@ -37,12 +37,28 @@ public class Admin {
 		
 		return departmentExists;
 	}
+	//Method for preventing duplicates
+	private boolean checkUnique(String firstName, String lastName, String department) {
+		boolean isUnique = true;
+		if (allNewHires.size() > 0) {
+			for (NewHire hire : allNewHires) {
+				if (hire.getFirstName() == firstName &&
+					hire.getLastName() == lastName &&
+					hire.getDepartment() == department) {
+					isUnique = false;
+					break;
+				}
+			}
+		}
+		return isUnique;
+	}
 	
 	//Method for creating new NewHire objects from Admin
 	public String createNewHire(String firstName, String lastName, String department) {
 		
 		if (!checkValidName(firstName, lastName)) return "Invalid format";
 		if (!checkValidDepartment(department)) return "Department not listed";
+		if (!checkUnique(firstName, lastName, department)) return "Email already exists";
 			
 			//Create NewHire object
 			NewHire newHire = new NewHire(firstName, lastName, department);

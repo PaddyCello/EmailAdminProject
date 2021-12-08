@@ -46,4 +46,10 @@ public class AdminTest {
 		admin.createNewHire("Jim", "Jones", "Accounting");
 		assertThat(admin.getAllNewHires(), hasItems(new NewHire("John", "Wayne", null), new NewHire("Jim", "Jones", "Accounting")));
 	}
+	@Test
+	public void testGetAllNewHires_duplicate() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.createNewHire("John", "Wayne", null);
+		assertEquals(1, admin.getAllNewHires().size());
+	}
 }
