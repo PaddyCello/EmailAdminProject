@@ -2,6 +2,7 @@
 package com.pjohnson_wtc.email_admin;
 
 import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -51,5 +52,14 @@ public class AdminTest {
 		admin.createNewHire("John", "Wayne", null);
 		admin.createNewHire("John", "Wayne", null);
 		assertEquals(1, admin.getAllNewHires().size());
+	}
+	@Test
+	public void testFindNewHireById() {
+		admin.createNewHire("John", "Wayne", null);
+		assertThat(admin.findNewHireById("john.wayne@company.com"), is(new NewHire("John", "Wayne", null)));
+	}
+	@Test
+	public void testFindNewHireById_notInList() {
+		assertNull(admin.findNewHireById("mike.rosoft@accounting.company.com"));
 	}
 }

@@ -82,7 +82,17 @@ public class Admin {
 	
 	//TODO
 	public NewHire findNewHireById(String email) {
-		return null;
+		NewHire foundHire = null;
+		for (NewHire hire : allNewHires) {
+			if (hire.getEmail().equals(email)) {
+				foundHire = hire;
+				break;
+			}
+		}
+		if (foundHire == null) {
+			logger.log(Level.WARNING, "Email not found.");
+		}
+		return foundHire;
 	}
 		
 	public static void main(String[] args) throws IOException {
