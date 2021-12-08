@@ -1,7 +1,8 @@
+
 package com.pjohnson_wtc.email_admin;
 
+import static org.hamcrest.CoreMatchers.hasItems;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +30,7 @@ public class AdminTest {
 	@Test
 	public void testCreateNewHire_addsToListOfHires() {
 		admin.createNewHire("John", "Wayne", null);
-		assertEquals("John", admin.getAllNewHires().get(2).getFirstName());
+		assertEquals("John", admin.getAllNewHires().get(0).getFirstName());
 	}
 	@Test
 	public void testCreateNewHire_missingName() {
@@ -38,5 +39,11 @@ public class AdminTest {
 	@Test
 	public void testCreateNewHire_invalidDepartment() {
 		assertEquals("Department not listed", admin.createNewHire("Mike", "Rosoft", "Office"));
+	}
+	@Test
+	public void testGetAllHires() {
+		admin.createNewHire("John", "Wayne", null);
+		admin.createNewHire("Jim", "Jones", "Accounting");
+		assertThat(admin.getAllNewHires(), hasItems(new NewHire("John", "Wayne", null), new NewHire("Jim", "Jones", "Accounting")));
 	}
 }

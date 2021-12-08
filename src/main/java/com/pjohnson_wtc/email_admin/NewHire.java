@@ -1,5 +1,7 @@
 package com.pjohnson_wtc.email_admin;
 
+import java.util.Objects;
+
 //Class for new hires
 public class NewHire {
 	
@@ -108,5 +110,18 @@ public class NewHire {
 	public void setPassword(String password) {
 
 	}
-	
+	 @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
+         if (o == null || getClass() != o.getClass()) return false;
+         NewHire newHire = (NewHire) o;
+         return Objects.equals(firstName, newHire.firstName) &&
+                 Objects.equals(lastName, newHire.lastName) &&
+                 Objects.equals(email, newHire.email);
+     }
+
+     @Override
+     public int hashCode() {
+         return Objects.hash(firstName, lastName, email);
+     }
 }

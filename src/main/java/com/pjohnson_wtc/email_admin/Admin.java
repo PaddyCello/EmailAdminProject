@@ -12,7 +12,7 @@ public class Admin {
 	
 	//Instance variables for Admin
 	private static String[] departments = {"sales", "development", "accounting"};
-	private static List<NewHire> allNewHires = new ArrayList<NewHire>();
+	private List<NewHire> allNewHires = new ArrayList<NewHire>();
 	
 	//Validation check - no missing name
 	private boolean checkValidName(String firstName, String lastName) {
