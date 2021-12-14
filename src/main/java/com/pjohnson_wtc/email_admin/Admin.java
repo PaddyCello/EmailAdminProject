@@ -14,6 +14,53 @@ public class Admin {
 	private static String[] departments = {"sales", "development", "accounting"};
 	private List<NewHire> allNewHires = new ArrayList<NewHire>();
 	
+	//Method for creating new NewHire objects from Admin
+	public String createNewHire(String firstName, String lastName, String department) {
+			
+		logger.info("Creating new NewHire object");
+			
+		if (!checkValidName(firstName, lastName)) return "Invalid format";
+		if (!checkValidDepartment(department)) return "Department not listed";
+		if (!checkUnique(firstName, lastName, department)) return "Email already exists";
+				
+			//Create NewHire object
+			NewHire newHire = new NewHire(firstName, lastName, department);
+				
+			//Add NewHire to Admin.allNewHires
+			allNewHires.add(newHire);
+				
+			logger.info("NewHire created, with firstName, lastName, department, email and password initialized.");
+				
+			//Return email address - could also use for search purposes
+			return newHire.getEmail();
+	}
+	
+	//Method for finding new hire by email address
+	public NewHire findNewHireById(String email) {
+			
+		//Default result to null
+		NewHire foundHire = null;
+			
+		//Loop through allNewHires, checking equality between email argument and emails for entries
+		if (allNewHires.size() > 0) {
+			for (NewHire hire : allNewHires) {
+				
+				if (hire.getEmail().equals(email)) {
+					
+					//If a match is found, assign the entry to foundHire and break the loop
+					foundHire = hire;
+					break;
+				}
+			}
+		}
+			
+		//Log a warning if no result is returned
+		if (foundHire == null) logger.log(Level.WARNING, "Email not found.");
+			
+		//Return result
+		return foundHire;
+	}
+		
 	//Validation check - no missing name
 	private boolean checkValidName(String firstName, String lastName) {
 		boolean nameValid = (firstName == null || lastName == null) ? false : true;
@@ -38,7 +85,6 @@ public class Admin {
 		return departmentExists;
 	}
 	
-	//NEW - until 110
 	//Validation check - preventing duplicate entries in allNewHires
 	private boolean checkUnique(String firstName, String lastName, String department) {
 		
@@ -66,53 +112,6 @@ public class Admin {
 		return isUnique;
 	}
 	
-	//Method for creating new NewHire objects from Admin
-	public String createNewHire(String firstName, String lastName, String department) {
-		
-		logger.info("Creating new NewHire object");
-		
-		if (!checkValidName(firstName, lastName)) return "Invalid format";
-		if (!checkValidDepartment(department)) return "Department not listed";
-		if (!checkUnique(firstName, lastName, department)) return "Email already exists";
-			
-			//Create NewHire object
-			NewHire newHire = new NewHire(firstName, lastName, department);
-			
-			//Add NewHire to Admin.allNewHires
-			allNewHires.add(newHire);
-			
-			logger.info("NewHire created, with firstName, lastName, department, email and password initialized.");
-			
-			//Return email address - could also use for search purposes
-			return newHire.getEmail();
-	}
-	
-	//Method for finding new hire by email address
-	public NewHire findNewHireById(String email) {
-		
-		//Default result to null
-		NewHire foundHire = null;
-		
-		//Loop through allNewHires, checking equality between email argument and emails for entries
-		if (allNewHires.size() > 0) {
-			for (NewHire hire : allNewHires) {
-			
-				if (hire.getEmail().equals(email)) {
-				
-					//If a match is found, assign the entry to foundHire and break the loop
-					foundHire = hire;
-					break;
-				}
-			}
-		}
-		
-		//Log a warning if no result is returned
-		if (foundHire == null) logger.log(Level.WARNING, "Email not found.");
-		
-		//Return result
-		return foundHire;
-	}
-	
 	//Getters
 	public String[] getDepartments() {
 		return departments;
@@ -120,8 +119,7 @@ public class Admin {
 		
 	public List<NewHire> getAllNewHires() {
 		return allNewHires;
-	}
-		
+	}	
 		
 	public static void main(String[] args) throws IOException {
 		
